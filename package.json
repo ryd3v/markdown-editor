@@ -4,7 +4,8 @@
   "description": "Electron markdown editor application",
   "main": "index.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build:macos": "electron-builder --macos --dir"
   },
   "repository": {
     "type": "git",

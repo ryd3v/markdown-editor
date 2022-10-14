@@ -19,6 +19,7 @@
   "homepage": "https://github.com/ryancollins-dev/markdown-editor#readme",
   "devDependencies": {
     "electron": "^21.1.1",
-    "electron-builder": "^23.6.0"
+    "electron-builder": "^23.6.0",
+    "got": ">=12.5.2"
   }
 }

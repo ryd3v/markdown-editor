@@ -1,10 +1,23 @@
 const { app, Menu, shell, ipcMain } = require('electron');
+const { BrowserWindow } = require('electron');
 
 ipcMain.on('editor-reply', (event, arg) => {
   console.log(`Received reply from web page: ${arg}`);
 });
 
 const template = [
+  {
+    label: 'Format',
+    submenu: [
+      {
+        label: 'Toggle Bold',
+        click() {
+          const window = BrowserWindow.getFocusedWindow();
+          window.webContents.send('editor-event', 'toggle-bold');
+        },
+      },
+    ],
+  },
   {
     role: 'help',
     submenu: [

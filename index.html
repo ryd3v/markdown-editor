@@ -39,6 +39,10 @@
       ipcRenderer.on('editor-event', (event, arg) => {
         console.log(arg);
         event.sender.send('editor-reply', `Received ${arg}`);
+
+        if (arg === 'toggle-bold') {
+          editor.toggleBold();
+        }
       });
 
       ipcRenderer.on('load', (event, content) => {

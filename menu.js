@@ -1,5 +1,49 @@
-const { app, Menu, shell, ipcMain } = require('electron');
-const { BrowserWindow } = require('electron');
+const {
+  app,
+  Menu,
+  shell,
+  ipcMain,
+  BrowserWindow,
+  globalShortcut,
+  dialog,
+} = require('electron');
+
+const fs = require('fs');
+
+function saveFile() {
+  console.log('Saving the file');
+
+  const window = BrowserWindow.getFocusedWindow();
+  window.webContents.send('editor-event', 'save');
+}
+
+app.on('ready', () => {
+  globalShortcut.register('CommandOrControl+S', () => {
+    saveFile();
+  });
+});
+
+ipcMain.on('save', (event, arg) => {
+  console.log(`Saving content of the file`);
+  console.log(arg);
+
+  const window = BrowserWindow.getFocusedWindow();
+  const options = {
+    title: 'Save markdown file',
+    filters: [
+      {
+        name: 'MyFile',
+        extensions: ['md'],
+      },
+    ],
+  };
+
+  const filename = dialog.showSaveDialogSync(window, options);
+  if (filename) {
+    console.log(`Saving content to the file: ${filename}`);
+    fs.writeFileSync(filename, arg);
+  }
+});
 
 ipcMain.on('editor-reply', (event, arg) => {
   console.log(`Received reply from web page: ${arg}`);

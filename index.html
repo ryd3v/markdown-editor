@@ -49,6 +49,9 @@
         if (arg === 'toggle-strikethrough') {
           editor.toggleStrikethrough();
         }
+        if (arg === 'save') {
+          event.sender.send('save', editor.value());
+        }
       });
 
       ipcRenderer.on('load', (event, content) => {

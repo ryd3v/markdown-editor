@@ -16,6 +16,20 @@ const template = [
           window.webContents.send('editor-event', 'toggle-bold');
         },
       },
+      {
+        label: 'Toggle Italic',
+        click() {
+          const window = BrowserWindow.getFocusedWindow();
+          window.webContents.send('editor-event', 'toggle-italic');
+        },
+      },
+      {
+        label: 'Toggle Strikethrough',
+        click() {
+          const window = BrowserWindow.getFocusedWindow();
+          window.webContents.send('editor-event', 'toggle-strikethrough');
+        },
+      },
     ],
   },
   {

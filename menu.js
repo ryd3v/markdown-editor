@@ -17,9 +17,28 @@ function saveFile() {
   window.webContents.send('editor-event', 'save');
 }
 
+function loadFile() {
+  const window = BrowserWindow.getFocusedWindow();
+  const files = dialog.showOpenDialogSync(window, {
+    properties: ['openFile'],
+    title: 'Pick a markdown file',
+    filters: [{ name: 'Markdown', extensions: ['md', 'markdown', 'txt'] }],
+  });
+  if (!files) return;
+
+  const file = files[0];
+  const fileContent = fs.readFileSync(file).toString();
+  console.log(fileContent);
+  window.webContents.send('load', fileContent);
+}
+
 app.on('ready', () => {
   globalShortcut.register('CommandOrControl+S', () => {
     saveFile();
+  });
+
+  globalShortcut.register('CommandOrControl+O', () => {
+    loadFile();
   });
 });
 
@@ -50,6 +69,25 @@ ipcMain.on('editor-reply', (event, arg) => {
 });
 
 const template = [
+  {
+    label: 'File',
+    submenu: [
+      {
+        label: 'Open',
+        accelerator: 'CommandOrControl+O',
+        click() {
+          loadFile();
+        },
+      },
+      {
+        label: 'Save',
+        accelerator: 'CommandOrControl+S',
+        click() {
+          saveFile();
+        },
+      },
+    ],
+  },
   {
     label: 'Format',
     submenu: [
@@ -82,7 +120,7 @@ const template = [
       {
         label: 'About Editor Component',
         click() {
-          shell.openExternal('https://simplemde.com');
+          shell.openExternal('https://simplemde.com/');
         },
       },
     ],
@@ -109,7 +147,7 @@ if (process.env.DEBUG) {
 
 if (process.platform === 'darwin') {
   template.unshift({
-    label: app.getName(),
+    label: app.name,
     submenu: [{ role: 'about' }, { type: 'separator' }, { role: 'quit' }],
   });
 }

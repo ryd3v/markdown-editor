@@ -27,7 +27,7 @@
       flex: 1;
     }
   </style>
-  <body>
+  <body ondrop="dropHandler(event);">
     <textarea id="editor"></textarea>
     <script>
       var editor = new SimpleMDE({
@@ -59,6 +59,25 @@
           editor.value(content);
         }
       });
+
+      function dropHandler(event) {
+        event.preventDefault();
+
+        if (event.dataTransfer.items) {
+          if (event.dataTransfer.items[0].kind === 'file') {
+            var file = event.dataTransfer.items[0].getAsFile();
+            if (file.type === 'text/markdown') {
+              var reader = new FileReader();
+              reader.onload = (e) => {
+                //console.log(e.target.result);
+                editor.codemirror.setValue(e.target.result);
+              };
+
+              reader.readAsText(file);
+            }
+          }
+        }
+      }
 
       ipcRenderer.send('editor-reply', 'Page Loaded');
     </script>

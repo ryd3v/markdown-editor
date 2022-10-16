@@ -4,9 +4,10 @@
   "description": "Electron markdown editor application",
   "main": "index.js",
   "scripts": {
-    "start": "DEBUG=true electron .",
+    "start": "electron .",
     "build:macos": "electron-builder --macos --dir",
     "build:linux": "electron-builder --linux",
+    "build:win": "electron-builder --win",
     "publish:github": "electron-builder --linux -p always"
   },
   "repository": {

@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "DEBUG=true electron .",
-    "build:macos": "electron-builder --macos --dir",
-    "build:linux": "electron-builder --linux"
+    "build:macos": "electron-builder --linux --dir",
+    "publish:github": "electron-builder --linux -p always"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,16 @@
     "got": ">=12.5.2"
   },
   "dependencies": {
+    "electron-updater": "^5.3.0",
     "simplemde": "^1.11.2"
+  },
+  "build": {
+    "appId": "com.my.markdown-editor",
+    "productName": "Markdown editor",
+    "publish": {
+      "provider": "github",
+      "owner": "ryancollins-dev",
+      "repo": "electron-updates"
+    }
   }
 }

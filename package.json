@@ -7,8 +7,8 @@
     "start": "electron .",
     "build:macos": "electron-builder --macos --dir",
     "build:linux": "electron-builder --linux",
-    "build:win": "electron-builder --win",
-    "publish:github": "electron-builder --linux -p always"
+    "build:windows": "electron-builder --win --dir",
+    "dist:windows": "electron-builder --win"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/ryancollins-dev/markdown-editor#readme",
   "devDependencies": {
-    "electron": "^21.1.1",
+    "electron": "^21.2.0",
     "electron-builder": "^23.6.0",
     "got": ">=12.5.2"
   },
@@ -31,12 +31,10 @@
     "simplemde": "^1.11.2"
   },
   "build": {
-    "appId": "com.my.markdown-editor",
-    "productName": "Markdown editor",
-    "publish": {
-      "provider": "github",
-      "owner": "ryancollins-dev",
-      "repo": "electron-updates"
+    "productName": "Markdown Editor",
+    "appId": "com.ryd3v.rock.markdown.editor",
+    "mac": {
+      "category": "public.app-category.utilities"
     }
   }
 }

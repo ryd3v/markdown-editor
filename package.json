@@ -22,10 +22,10 @@
   },
   "homepage": "https://github.com/ryancollins-dev/markdown-editor#readme",
   "devDependencies": {
-    "electron": "^21.2.0",
+    "electron": "^22.0.0",
     "electron-builder": "^23.6.0",
-    "got": "^12.5.2",
-    "minimatch": "^5.1.0"
+    "got": "^12.5.3",
+    "minimatch": "^5.1.2"
   },
   "dependencies": {
     "electron-updater": "^5.3.0",

@@ -11,7 +11,7 @@ const {
 const fs = require('fs');
 
 function saveFile() {
-  console.log('Saving the file');
+  // console.log('Saving the file');
 
   const window = BrowserWindow.getFocusedWindow();
   window.webContents.send('editor-event', 'save');
@@ -28,7 +28,7 @@ function loadFile() {
 
   const file = files[0];
   const fileContent = fs.readFileSync(file).toString();
-  console.log(fileContent);
+  // console.log(fileContent);
   window.webContents.send('load', fileContent);
 }
 
@@ -43,8 +43,8 @@ app.on('ready', () => {
 });
 
 ipcMain.on('save', (event, arg) => {
-  console.log(`Saving content of the file`);
-  console.log(arg);
+  // console.log(`Saving content of the file`);
+  // console.log(arg);
 
   const window = BrowserWindow.getFocusedWindow();
   const options = {
@@ -59,13 +59,13 @@ ipcMain.on('save', (event, arg) => {
 
   const filename = dialog.showSaveDialogSync(window, options);
   if (filename) {
-    console.log(`Saving content to the file: ${filename}`);
+    // console.log(`Saving content to the file: ${filename}`);
     fs.writeFileSync(filename, arg);
   }
 });
 
 ipcMain.on('editor-reply', (event, arg) => {
-  console.log(`Received reply from web page: ${arg}`);
+  // console.log(`Received reply from web page: ${arg}`);
 });
 
 const template = [

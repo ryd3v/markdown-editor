@@ -12,18 +12,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ryancollins-dev/markdown-editor.git"
+    "url": "git+https://github.com/ryd3v/markdown-editor.git"
   },
   "keywords": [],
   "author": "Ryan Collins",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ryancollins-dev/markdown-editor/issues"
+    "url": "https://github.com/ryd3v/markdown-editor/issues"
   },
-  "homepage": "https://github.com/ryancollins-dev/markdown-editor#readme",
+  "homepage": "https://github.com/ryd3v/markdown-editor#readme",
   "devDependencies": {
-    "electron": "^24.1.1",
-    "electron-builder": "^23.6.0",
+    "electron": "^24.1.3",
+    "electron-builder": "^24.3.0",
     "got": "^12.6.0",
     "minimatch": "^9.0.0"
   },
@@ -33,7 +33,7 @@
   },
   "build": {
     "productName": "Markdown Editor",
-    "appId": "com.ryd3v.rock.markdown.editor",
+    "appId": "com.ryd3v.com.markdown.editor",
     "mac": {
       "category": "public.app-category.utilities"
     }
